@@ -1,0 +1,26 @@
+@import url('https://fonts.googleapis.com/css?family=Frijole');
+@import url('https://fonts.googleapis.com/css?family=Griffy');
+body {
+    background: #333;
+    box-sizing: border-box;
+    font-family: 'Griffy', cursive, Arial, Helvetica, sans-serif;
+}
+
+.container {
+    margin: auto;
+    margin-top: 1vh;
+    height: 95vh;
+    width: 95vw;
+    max-width: 1600px;
+    background-image: url(../images/pumpkinbackground.jpg);
+    background-size: contain;
+    background-repeat: no-repeat;
+}
+
+.title {
+    font-size: 4vw;
+    font-family: 'Frijole', cursive, Arial, Helvetica, sans-serif;
+    text-align: center;
+    padding-top: 4vh;
+    color: #ff7417;
+}
