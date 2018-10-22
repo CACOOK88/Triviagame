@@ -4,6 +4,10 @@
 // 
 // *************************************************
 var trivia = {
+    timer: 30,
+    correctCounter: 0,
+    wrongCounter: 0,
+    questiontrack: 1,
     q1: {
         question: "In what year will the next halloween occur with a full moon?",
         answers: {
@@ -120,5 +124,14 @@ $("#startButton").on("click", function() {
 
     // click listener for answers
 
-    
+
 });
+
+// Click listener for answer boxes
+    // stop question timer
+    // check for correct or wrong click
+        // display corresponding screen
+        // increment correct or wrong var
+    // wait 3 seconds
+    // display new question
+    // reset timer and start clock
