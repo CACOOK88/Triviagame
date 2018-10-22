@@ -1,26 +1,54 @@
 @import url('https://fonts.googleapis.com/css?family=Frijole');
 @import url('https://fonts.googleapis.com/css?family=Griffy');
+html {font-size:30px;}
 body {
     background: #333;
     box-sizing: border-box;
     font-family: 'Griffy', cursive, Arial, Helvetica, sans-serif;
+    color: #ccc;
+    font-size: 30px;
+    color: #ff7417;
 }
-
 .container {
-    margin: auto;
+    margin: 0 auto;
     margin-top: 1vh;
-    height: 95vh;
+    /* used vw to keep image and div at 16:9 ratio no matter the
+       screen size.  */
+    height: 53.43vw;
     width: 95vw;
-    max-width: 1600px;
     background-image: url(../images/pumpkinbackground.jpg);
     background-size: contain;
     background-repeat: no-repeat;
+    position: relative;
 }
-
 .title {
     font-size: 4vw;
     font-family: 'Frijole', cursive, Arial, Helvetica, sans-serif;
     text-align: center;
     padding-top: 4vh;
-    color: #ff7417;
+}
+.startGame {
+    font-size: 1.5rem;
+    text-align: center;
+    margin: 0 auto;
+    margin-top: 4%;
+    padding: 8px;
+    width: 250px;
+    border-radius: 100vh;
+    cursor: pointer;
+    background: #111;
+}
+.displayBox {
+    position: absolute;
+    left: 3vw;
+    bottom: 3vw;
+    background: rgba(51,51,51,.4);
+    width: 50%;
+    height: 60%;
+    border-radius: 10vh;
+    text-align: center;
+}
+
+.hidden {
+    display: none;
 }
