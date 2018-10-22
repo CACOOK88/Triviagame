@@ -1,3 +1,8 @@
+// *************************************************
+// 
+//              TRIVIA QUESTION OBJECT
+// 
+// *************************************************
 var trivia = {
     q1: {
         question: "In what year will the next halloween occur with a full moon?",
@@ -100,3 +105,20 @@ var trivia = {
         img: "../images/preistnun.jpg"
     }
 }
+
+// When start button is clicked
+$("#startButton").on("click", function() {
+    // hide start button
+    $("#startButton").addClass("hidden");
+    // show question box
+    $(".displayBox").removeClass("hidden");
+    // display next question
+
+    // display random ordered answer choices
+
+    // start timer
+
+    // click listener for answers
+
+    
+});
