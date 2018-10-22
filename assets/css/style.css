@@ -48,7 +48,25 @@ body {
     border-radius: 10vh;
     text-align: center;
 }
-
+.timer {
+    margin: 20px;
+    font-size: 6vh;
+}
+.question {
+    margin: 0 auto;
+    margin-bottom: 25px;
+    width: 80%;
+    font-size: 3.5vh;
+}
+.choice {
+    font-size: 3vh;
+    margin: 10px auto;
+    padding: 1vh;
+    background: rgba(10,10,10,1);
+    width: 80%;
+    height: 10%;
+    border-radius: 10vh;
+}
 .hidden {
     display: none;
 }

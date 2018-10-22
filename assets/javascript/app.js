@@ -160,10 +160,7 @@ function nextQuestion() {
 
 
 // When start button is clicked
-$("#startButton").on("click", function() {
-    // start game function
-    gameStart();
-});
+$("#startButton").on("click", gameStart);
 // when user selects an answer
 $(".choice").on("click", function() {
     // if statement to check correct or not, increment associated 
