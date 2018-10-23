@@ -72,8 +72,13 @@ body {
     cursor: pointer;
 }
 #image {
-    max-height: 275px;
+    max-height: 250px;
     border-radius: 5vh;
+}
+#endImage {
+    max-height: 300px;
+    border-radius: 5vh;
+    margin-top: 5px;
 }
 .hidden {
     display: none;

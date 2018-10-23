@@ -111,38 +111,103 @@ var trivia = {
         }
     ]
 }
+// *************************************************
+// 
+//              VARIABLES
+// 
+// *************************************************
 var timerCountdown;
 var clicked;
 var currentQuestion = 0;
+// *************************************************
+// 
+//        START END AND RESET FUNCTIONS
+// 
+// *************************************************
 function gameStart() {
     // hide start button
     $("#startButton").addClass("hidden");
     // show question box
     displayQuestion();
 }
+function endGame() {
+    // run end game function at set delay after last question is answered
+    setTimeout(function() {
+        // clear any question or answer information
+        $(".timer").empty();
+        $(".correctAnswer").empty();
+        $(".correctText").empty();
+        $("#image").attr("src", "");
+        // display end game screen here
+        // update screen with the correct and incorrect counters
+        $("#answersCorrect").text("You got " + trivia.correctCounter + " correct!");
+        $("#answersWrong").text("You got " + trivia.wrongCounter + " Wrong");
+        $("#endImage").attr("src", trivia.endImg)
+        // show reset button
+        $("#resetButton").removeClass("hidden");
+    }, 3000);
+}
+function reset() {
+    // hide display boxes, clear text and images
+    $("#resetButton, .displayBox").addClass("hidden");
+    $("#answersCorrect, #answersWrong").empty();
+    $("#endImage").attr("src", "");
+    // reset counters to default starting point
+    trivia.correctCounter = 0;
+    trivia.wrongCounter = 0;
+    trivia.timer = 20;
+    currentQuestion = 0;
+    // show start button
+    $("#startButton").removeClass("hidden");
+    // reset timer text to default
+    $(".timer").text("Time Left: 20");
+}
+// *************************************************
+// 
+//              TIMER FUNCTIONS
+// 
+// *************************************************
 function runTimer() {
-    $(".timer").text("Time Left: 30");
+    // set screen timer to default
+    $(".timer").text("Time Left: 20");
+    // run decrement to count down the seconds
     timerCountdown = setInterval(decrement, 1000);
 }
 function decrement() {
+    // counter to keep track
     trivia.timer--;
+    // update timer on screen every second ( this is coming from runTimer() )
     $(".timer").text("Time Left: " + trivia.timer);
+    // When the timer reaches zero without a selection:
     if (trivia.timer === 0) {
+        // stop timer
         stop();
         // hide questionBox
         $(".questionBox").addClass("hidden"); 
-        correctScreen();
+        // update screen and tell user they didnt make a selection
+        noGuess();
+        // move to next question selector
         currentQuestion++;
+        // add 1 to incorrect counter
         trivia.wrongCounter++;
+        // run function to display next question to the screen
         nextQuestion();
     }
 }
 function stop() {
+    // this stops the timer
     clearInterval(timerCountdown);
 }
+// *************************************************
+// 
+//  CHECKING ANSWER AND UPDATE SCREEN FUNCTIONS
+// 
+// *************************************************
 function displayQuestion() {
+    // show the display box
     $(".displayBox, .questionBox").removeClass("hidden");
-    $(".questionAnswer").empty();
+    // make sure there is no text or images on the screen
+    $(".correctAnswer").empty();
     $(".correctText").empty();
     $("#image").attr("src", "");
     // display question
@@ -152,36 +217,15 @@ function displayQuestion() {
     $(".choice2").text(trivia.questionList[currentQuestion].answers.wrong2).attr("value", "wrong");
     $(".choice3").text(trivia.questionList[currentQuestion].answers.correct).attr("value", "correct");
     $(".choice4").text(trivia.questionList[currentQuestion].answers.wrong3).attr("value", "wrong");
-    trivia.timer = 30;
+    // reset timer
+    trivia.timer = 20;
+    // restart timer countdown
     runTimer();
-}
-function checkCorrect(e) {
-    // create variable to grab clicked value attribute
-    clicked = e.currentTarget.attributes[1].value;
-    // stop timer
-    stop();
-    // hide questionBox
-    $(".questionBox").addClass("hidden"); 
-    // show correct screen
-    correctScreen();
-    if (clicked === "correct") {
-        // increment correctCounter
-        trivia.correctCounter++;
-    } else {
-        // increment wrongCounter
-        trivia.wrongCounter++;
-    }
-    currentQuestion++;
-}
-function correctScreen() {
-    $(".correctText").text("The correct answer is " + trivia.questionList[currentQuestion].answers.correct);
-    $("#image").attr("src", trivia.questionList[currentQuestion].img);
-
 }
 function nextQuestion() {
     // only run when questions are left.
     if (currentQuestion <= trivia.questionList.length -1) {
-        // next question after delay
+        // display next question after delay
         setTimeout(function() {
             displayQuestion();
         }, 3000);
@@ -190,34 +234,51 @@ function nextQuestion() {
         console.log("end game")
     }
 }
-function endGame() {
-    setTimeout(function() {
-        $(".timer").empty();
-        $(".questionAnswer").empty();
-        $(".correctText").empty();
-        $("#image").attr("src", "");
-        // display end game screen here
-        $("#answersCorrect").text("You got " + trivia.correctCounter + " correct!");
-        $("#answersWrong").text("You got " + trivia.wrongCounter + " Wrong");
-        $("#image").attr("src", trivia.endImg)
-        $("#resetButton").removeClass("hidden");
-        // *******************************************
-    }, 3000);
+function checkCorrect(e) {
+    // create variable to grab clicked value attribute
+    clicked = e.currentTarget.attributes[1].value;
+    // stop timer
+    stop();
+    // hide questionBox
+    $(".questionBox").addClass("hidden"); 
+    // if else to check correct selection or not
+    if (clicked === "correct") {
+        // increment correctCounter
+        trivia.correctCounter++;
+        // if correct, show correct screen
+        correctScreen();
+    } else {
+        // increment wrongCounter
+        trivia.wrongCounter++;
+        // if incorrect show wrong screen
+        wrongScreen();
+    }
+    // move to next question counter
+    currentQuestion++;
 }
-function reset() {
-    $("#resetButton, .displayBox").addClass("hidden");
-    $("#answersCorrect, #answersWrong").empty();
-    $("#image").attr("src", "");
-    trivia.correctCounter = 0;
-    trivia.wrongCounter = 0;
-    trivia.timer = 30;
-    currentQuestion = 0;
-    $("#startButton").removeClass("hidden");
-    $(".timer").text("Time Left: 30");
-
+function correctScreen() {
+    // update screen with correct and information
+    $(".correctAnswer").text("You are Correct!!!!")
+    $(".correctText").text("The answer is " + trivia.questionList[currentQuestion].answers.correct);
+    $("#image").attr("src", trivia.questionList[currentQuestion].img);
 }
-
-
+function wrongScreen() {
+    // update screen with wrong and information
+    $(".correctAnswer").text("You are NOT Correct")
+    $(".correctText").text("The correct answer is " + trivia.questionList[currentQuestion].answers.correct);
+    $("#image").attr("src", trivia.questionList[currentQuestion].img);
+}
+function noGuess() {
+    // update screen with no choice and information
+    $(".correctAnswer").text("You ran out of time!!!")
+    $(".correctText").text("The correct answer is " + trivia.questionList[currentQuestion].answers.correct);
+    $("#image").attr("src", trivia.questionList[currentQuestion].img);
+}
+// *************************************************
+// 
+//              GAMEPLAY
+// 
+// *************************************************
 // When start button is clicked
 $("#startButton").on("click", gameStart);
 // when user selects an answer
