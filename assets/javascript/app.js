@@ -146,14 +146,13 @@ function stop() {
     clearInterval(timerCountdown);
 }
 function displayQuestion() {
-    $(".displayBox").removeClass("hidden");
-    $(".questionBox").removeClass("hidden");
+    $(".displayBox, .questionBox").removeClass("hidden");
     $(".questionAnswer").empty();
     $(".correctText").empty();
     $("#image").attr("src", "");
     // display question
     $(".question").text(trivia.questionList[currentQuestion].question);
-    // display answers in random order and assigns correct and incorrect values
+    // display answers and assigns correct and incorrect values
     $(".choice1").text(trivia.questionList[currentQuestion].answers.wrong1).attr("value", "wrong");
     $(".choice2").text(trivia.questionList[currentQuestion].answers.wrong2).attr("value", "wrong");
     $(".choice3").text(trivia.questionList[currentQuestion].answers.correct).attr("value", "correct");
@@ -180,7 +179,6 @@ function checkCorrect(e) {
     currentQuestion++;
 }
 function correctScreen() {
-    $("questionAnswer").text(trivia.questionList[currentQuestion].question);
     $(".correctText").text("The correct answer is " + trivia.questionList[currentQuestion].answers.correct);
     $("#image").attr("src", trivia.questionList[currentQuestion].img);
 
@@ -197,6 +195,8 @@ function nextQuestion() {
 function endGame() {
     setTimeout(function() {
         // display end game screen here
+
+        // *******************************************
     }, 3000);
 }
 
