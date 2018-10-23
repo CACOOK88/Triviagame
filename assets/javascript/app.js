@@ -121,6 +121,7 @@ function gameStart() {
     displayQuestion();
 }
 function runTimer() {
+    $(".timer").text("Time Left: 30");
     timerCountdown = setInterval(decrement, 1000);
 }
 function decrement() {
@@ -130,6 +131,10 @@ function decrement() {
         stop();
         // hide questionBox
         $(".questionBox").addClass("hidden"); 
+        correctScreen();
+        currentQuestion++;
+        trivia.wrongCounter++;
+        nextQuestion();
     }
 }
 function stop() {
@@ -179,7 +184,7 @@ function nextQuestion() {
         // next question after delay
         setTimeout(function() {
             displayQuestion();
-        }, 500);
+        }, 3000);
     } else {
         endGame();
         console.log("end game")
@@ -195,8 +200,21 @@ function endGame() {
         $("#answersCorrect").text("You got " + trivia.correctCounter + " correct!");
         $("#answersWrong").text("You got " + trivia.wrongCounter + " Wrong");
         $("#image").attr("src", trivia.endImg)
+        $("#resetButton").removeClass("hidden");
         // *******************************************
     }, 3000);
+}
+function reset() {
+    $("#resetButton, .displayBox").addClass("hidden");
+    $("#answersCorrect, #answersWrong").empty();
+    $("#image").attr("src", "");
+    trivia.correctCounter = 0;
+    trivia.wrongCounter = 0;
+    trivia.timer = 30;
+    currentQuestion = 0;
+    $("#startButton").removeClass("hidden");
+    $(".timer").text("Time Left: 30");
+
 }
 
 
@@ -210,3 +228,5 @@ $(".choice").on("click", function(e) {
         nextQuestion();
     }
 });
+// When reset button is clicked
+$("#resetButton").on("click", reset);
