@@ -52,7 +52,9 @@ body {
     margin: 20px;
     font-size: 6vh;
 }
-.question {
+.question,
+.questionAnswer,
+.correctText {
     margin: 0 auto;
     margin-bottom: 25px;
     width: 80%;
@@ -66,6 +68,9 @@ body {
     width: 80%;
     height: 10%;
     border-radius: 10vh;
+}
+#image {
+    max-height: 200px;
 }
 .hidden {
     display: none;
