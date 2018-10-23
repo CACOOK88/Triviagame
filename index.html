@@ -12,6 +12,7 @@
     <div class="container">
         <h1 class="title">HALLOWEEN TRIVIA</h1>
         <div id="startButton" class="startGame">Start Game</div>
+        <div id="resetButton" class="resetGame hidden">Reset Game</div>
         <div class="displayBox hidden">
             <div class="timer">Time Left: 30</div>
             <div class="questionBox">
@@ -26,7 +27,10 @@
                 <p class="correctText"></p>
                 <img src="" alt="" id="image">
             </div>
-            <div class="gameOver hidden"></div>
+            <div class="gameOver">
+                <p id="answersCorrect"></p>
+                <p id="answersWrong"></p>
+            </div>
         </div>
     </div>
 

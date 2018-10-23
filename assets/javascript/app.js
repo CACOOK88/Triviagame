@@ -7,10 +7,9 @@ var trivia = {
     timer: 30,
     correctCounter: 0,
     wrongCounter: 0,
-    questionTrack: 0,
+    endImg: "../assets/images/blackpumpkin.jpg",
     questionList: [
         {
-            id: 1,
             question: "In what year will the next halloween occur with a full moon?",
             answers: {
                 wrong1: 2018,
@@ -21,7 +20,6 @@ var trivia = {
             img: "../assets/images/halloween2020.jpg"
         },
         {
-            id: 2,
             question: "In what country was the first account of children saying \"Trick-or-Treat\" on halloween?",
             answers: {
                 wrong1: "USA",
@@ -32,7 +30,6 @@ var trivia = {
             img: "../assets/images/canadahalloween.jpg"
         },
         {
-            id: 3,
             question: "In what decade did Trick-or-Treating start gaining popularity in the USA?",
             answers: {
                 wrong1: "70's",
@@ -43,7 +40,6 @@ var trivia = {
             img: "../assets/images/30shalloween.jpg"
         },
         {
-            id: 4,
             question: "About how many children have been seriously injred or killed from poisoned candy received from Trick-or-Treating?",
             answers: {
                 wrong1: 1200,
@@ -54,7 +50,6 @@ var trivia = {
             img: "../assets/images/poisoncandy.jpg"
         },
         {
-            id: 5,
             question: "What were Jack O'lanterns originally made from?",
             answers: {
                 wrong1: "Cantaloupe",
@@ -65,7 +60,6 @@ var trivia = {
             img: "../assets/images/turnip.jpg"
         },
         {
-            id: 6,
             question: "In what country did Jack O'lantern carving originate?",
             answers: {
                 wrong1: "France",
@@ -76,7 +70,6 @@ var trivia = {
             img: "../assets/images/ireland.jpg"
         },
         {
-            id: 7,
             question: "Pumpkins are native to what continent?",
             answers: {
                 wrong1: "Asia",
@@ -87,7 +80,6 @@ var trivia = {
             img: "../assets/images/america.jpg"
         },
         {
-            id: 8,
             question: "How much are American consumers expected to spend on halloween in 2018?",
             answers: {
                 wrong1: "20 Billion",
@@ -98,7 +90,6 @@ var trivia = {
             img: "../assets/images/spending.jpg"
         },
         {
-            id: 9,
             question: "What is the second most popular halloween candy?",
             answers: {
                 wrong1: "Starburst",
@@ -109,7 +100,6 @@ var trivia = {
             img: "../assets/images/candycorn.jpg"
         },
         {
-            id: 10,
             question: "In what state is it illegal to dress up like a priest or nun?",
             answers: {
                 wrong1: "California",
@@ -190,12 +180,21 @@ function nextQuestion() {
         setTimeout(function() {
             displayQuestion();
         }, 500);
+    } else {
+        endGame();
+        console.log("end game")
     }
 }
 function endGame() {
     setTimeout(function() {
+        $(".timer").empty();
+        $(".questionAnswer").empty();
+        $(".correctText").empty();
+        $("#image").attr("src", "");
         // display end game screen here
-
+        $("#answersCorrect").text("You got " + trivia.correctCounter + " correct!");
+        $("#answersWrong").text("You got " + trivia.wrongCounter + " Wrong");
+        $("#image").attr("src", trivia.endImg)
         // *******************************************
     }, 3000);
 }
@@ -209,8 +208,5 @@ $(".choice").on("click", function(e) {
     if (currentQuestion <= trivia.questionList.length -1) {
         checkCorrect(e);
         nextQuestion();
-    }
-    if (currentQuestion == trivia.questionList.length) {
-        console.log("end game");
     }
 });
