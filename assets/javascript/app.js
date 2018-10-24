@@ -9,7 +9,7 @@ var trivia = {
     wrongCounter: 0,
     currentQuestion: 0,
     clicked: "",
-    endImg: "../assets/images/blackpumpkin.jpg",
+    endImg: "assets/images/blackpumpkin.jpg",
     questionList: [
         {
             question: "In what year will the next halloween occur with a full moon?",
@@ -19,7 +19,7 @@ var trivia = {
                 wrong3: 2030,
                 correct: 2020
             },
-            img: "../assets/images/halloween2020.jpg"
+            img: "assets/images/halloween2020.jpg"
         },
         {
             question: "In what country was the first account of children saying \"Trick-or-Treat\" on halloween?",
@@ -29,7 +29,7 @@ var trivia = {
                 wrong3: "Scotland",
                 correct: "Canada"
             },
-            img: "../assets/images/canadahalloween.jpg"
+            img: "assets/images/canadahalloween.jpg"
         },
         {
             question: "In what decade did Trick-or-Treating start gaining popularity in the USA?",
@@ -39,7 +39,7 @@ var trivia = {
                 wrong3: "40's",
                 correct: "30's"
             },
-            img: "../assets/images/30shalloween.jpg"
+            img: "assets/images/30shalloween.jpg"
         },
         {
             question: "About how many children have been seriously injred or killed from poisoned candy received from Trick-or-Treating?",
@@ -49,7 +49,7 @@ var trivia = {
                 wrong3: 100,
                 correct: 0
             },
-            img: "../assets/images/poisoncandy.jpg"
+            img: "assets/images/poisoncandy.jpg"
         },
         {
             question: "What were Jack O'lanterns originally made from?",
@@ -59,7 +59,7 @@ var trivia = {
                 wrong3: "Pumpkins",
                 correct: "Turnips"
             },
-            img: "../assets/images/turnip.jpg"
+            img: "assets/images/turnip.jpg"
         },
         {
             question: "In what country did Jack O'lantern carving originate?",
@@ -69,7 +69,7 @@ var trivia = {
                 wrong3: "USA",
                 correct: "Ireland"
             },
-            img: "../assets/images/ireland.jpg"
+            img: "assets/images/ireland.jpg"
         },
         {
             question: "Pumpkins are native to what continent?",
@@ -79,7 +79,7 @@ var trivia = {
                 wrong3: "South America",
                 correct: "North America"
             },
-            img: "../assets/images/america.jpg"
+            img: "assets/images/america.jpg"
         },
         {
             question: "How much are American consumers expected to spend on halloween in 2018?",
@@ -89,7 +89,7 @@ var trivia = {
                 wrong3: "10 Million",
                 correct: "9 Billion"
             },
-            img: "../assets/images/spending.jpg"
+            img: "assets/images/spending.jpg"
         },
         {
             question: "What is the second most popular halloween candy?",
@@ -99,7 +99,7 @@ var trivia = {
                 wrong3: "Chocolate",
                 correct: "Candy Corn"
             },
-            img: "../assets/images/candycorn.jpg"
+            img: "assets/images/candycorn.jpg"
         },
         {
             question: "In what state is it illegal to dress up like a priest or nun?",
@@ -109,7 +109,7 @@ var trivia = {
                 wrong3: "North Carolina",
                 correct: "Alabama"
             },
-            img: "../assets/images/preistnun.png"
+            img: "assets/images/preistnun.png"
         }
     ]
 }
@@ -231,7 +231,6 @@ function nextQuestion() {
         }, 3000);
     } else {
         endGame();
-        console.log("end game")
     }
 }
 function checkCorrect(e) {
