@@ -7,6 +7,7 @@ var trivia = {
     timer: 30,
     correctCounter: 0,
     wrongCounter: 0,
+    currentQuestion: 0,
     endImg: "../assets/images/blackpumpkin.jpg",
     questionList: [
         {
@@ -118,7 +119,7 @@ var trivia = {
 // *************************************************
 var timerCountdown;
 var clicked;
-var currentQuestion = 0;
+// var currentQuestion = 0;
 // *************************************************
 // 
 //        START END AND RESET FUNCTIONS
@@ -156,7 +157,7 @@ function reset() {
     trivia.correctCounter = 0;
     trivia.wrongCounter = 0;
     trivia.timer = 20;
-    currentQuestion = 0;
+    trivia.currentQuestion = 0;
     // show start button
     $("#startButton").removeClass("hidden");
     // reset timer text to default
@@ -187,7 +188,7 @@ function decrement() {
         // update screen and tell user they didnt make a selection
         noGuess();
         // move to next question selector
-        currentQuestion++;
+        trivia.currentQuestion++;
         // add 1 to incorrect counter
         trivia.wrongCounter++;
         // run function to display next question to the screen
@@ -211,12 +212,12 @@ function displayQuestion() {
     $(".correctText").empty();
     $("#image").attr("src", "");
     // display question
-    $(".question").text(trivia.questionList[currentQuestion].question);
+    $(".question").text(trivia.questionList[trivia.currentQuestion].question);
     // display answers and assigns correct and incorrect values
-    $(".choice1").text(trivia.questionList[currentQuestion].answers.wrong1).attr("value", "wrong");
-    $(".choice2").text(trivia.questionList[currentQuestion].answers.wrong2).attr("value", "wrong");
-    $(".choice3").text(trivia.questionList[currentQuestion].answers.correct).attr("value", "correct");
-    $(".choice4").text(trivia.questionList[currentQuestion].answers.wrong3).attr("value", "wrong");
+    $(".choice1").text(trivia.questionList[trivia.currentQuestion].answers.wrong1).attr("value", "wrong");
+    $(".choice2").text(trivia.questionList[trivia.currentQuestion].answers.wrong2).attr("value", "wrong");
+    $(".choice3").text(trivia.questionList[trivia.currentQuestion].answers.correct).attr("value", "correct");
+    $(".choice4").text(trivia.questionList[trivia.currentQuestion].answers.wrong3).attr("value", "wrong");
     // reset timer
     trivia.timer = 20;
     // restart timer countdown
@@ -224,7 +225,7 @@ function displayQuestion() {
 }
 function nextQuestion() {
     // only run when questions are left.
-    if (currentQuestion <= trivia.questionList.length -1) {
+    if (trivia.currentQuestion <= trivia.questionList.length -1) {
         // display next question after delay
         setTimeout(function() {
             displayQuestion();
@@ -254,25 +255,25 @@ function checkCorrect(e) {
         wrongScreen();
     }
     // move to next question counter
-    currentQuestion++;
+    trivia.currentQuestion++;
 }
 function correctScreen() {
     // update screen with correct and information
     $(".correctAnswer").text("You are Correct!!!!")
-    $(".correctText").text("The answer is " + trivia.questionList[currentQuestion].answers.correct);
-    $("#image").attr("src", trivia.questionList[currentQuestion].img);
+    $(".correctText").text("The answer is " + trivia.questionList[trivia.currentQuestion].answers.correct);
+    $("#image").attr("src", trivia.questionList[trivia.currentQuestion].img);
 }
 function wrongScreen() {
     // update screen with wrong and information
     $(".correctAnswer").text("You are NOT Correct")
-    $(".correctText").text("The correct answer is " + trivia.questionList[currentQuestion].answers.correct);
-    $("#image").attr("src", trivia.questionList[currentQuestion].img);
+    $(".correctText").text("The correct answer is " + trivia.questionList[trivia.currentQuestion].answers.correct);
+    $("#image").attr("src", trivia.questionList[trivia.currentQuestion].img);
 }
 function noGuess() {
     // update screen with no choice and information
     $(".correctAnswer").text("You ran out of time!!!")
-    $(".correctText").text("The correct answer is " + trivia.questionList[currentQuestion].answers.correct);
-    $("#image").attr("src", trivia.questionList[currentQuestion].img);
+    $(".correctText").text("The correct answer is " + trivia.questionList[trivia.currentQuestion].answers.correct);
+    $("#image").attr("src", trivia.questionList[trivia.currentQuestion].img);
 }
 // *************************************************
 // 
@@ -284,7 +285,7 @@ $("#startButton").on("click", gameStart);
 // when user selects an answer
 $(".choice").on("click", function(e) {
     
-    if (currentQuestion <= trivia.questionList.length -1) {
+    if (trivia.currentQuestion <= trivia.questionList.length -1) {
         checkCorrect(e);
         nextQuestion();
     }
