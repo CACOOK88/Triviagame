@@ -8,6 +8,7 @@ var trivia = {
     correctCounter: 0,
     wrongCounter: 0,
     currentQuestion: 0,
+    clicked: "",
     endImg: "../assets/images/blackpumpkin.jpg",
     questionList: [
         {
@@ -118,8 +119,6 @@ var trivia = {
 // 
 // *************************************************
 var timerCountdown;
-var clicked;
-// var currentQuestion = 0;
 // *************************************************
 // 
 //        START END AND RESET FUNCTIONS
@@ -237,13 +236,13 @@ function nextQuestion() {
 }
 function checkCorrect(e) {
     // create variable to grab clicked value attribute
-    clicked = e.currentTarget.attributes[1].value;
+    trivia.clicked = e.currentTarget.attributes[1].value;
     // stop timer
     stop();
     // hide questionBox
     $(".questionBox").addClass("hidden"); 
     // if else to check correct selection or not
-    if (clicked === "correct") {
+    if (trivia.clicked === "correct") {
         // increment correctCounter
         trivia.correctCounter++;
         // if correct, show correct screen
